@@ -1,0 +1,69 @@
+.desk-scene {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.desk-surface {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  /* Base de madera clara */
+  background-color: #d3c5ad;
+
+  /* Capas de textura */
+  background-image:
+    
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 18px,
+      rgba(180, 110, 40, 0.08) 18px,
+      rgba(180, 110, 40, 0.08) 19px,
+      transparent 19px,
+      transparent 38px,
+      rgba(255, 255, 255, 0.06) 38px,
+      rgba(255, 255, 255, 0.06) 39px
+    ),
+    
+    repeating-linear-gradient(
+      88deg,
+      transparent 0px,
+      transparent 60px,
+      rgba(160, 90, 20, 0.07) 60px,
+      rgba(160, 90, 20, 0.07) 62px,
+      transparent 62px,
+      transparent 130px,
+      rgba(255, 240, 200, 0.05) 130px,
+      rgba(255, 240, 200, 0.05) 132px
+    ),
+    
+    repeating-linear-gradient(
+      91deg,
+      transparent 0px,
+      transparent 200px,
+      rgba(140, 80, 15, 0.06) 200px,
+      rgba(140, 80, 15, 0.06) 204px,
+      transparent 204px,
+      transparent 420px,
+      rgba(200, 150, 80, 0.05) 420px,
+      rgba(200, 150, 80, 0.05) 424px
+    ),
+    /* Degradado */
+    linear-gradient(
+      180deg,
+      #E8BE80 0%,
+      #D4A96A 30%,
+      #C89858 65%,
+      #BA8A4A 100%
+    );
+
+
+  box-shadow:
+    inset 0 8px 30px rgba(100, 55, 10, 0.15),
+    inset 0 -6px 20px rgba(80, 40, 5, 0.12),
+    inset 8px 0 20px rgba(100, 55, 10, 0.08),
+    inset -8px 0 20px rgba(100, 55, 10, 0.08);
+}

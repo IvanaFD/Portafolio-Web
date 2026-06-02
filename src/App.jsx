@@ -1,11 +1,16 @@
+import { motion } from 'framer-motion'
+import DeskScene from './components/DeskScene'
 import './index.css'
 
 export default function App() {
   return (
-    <div style={{ width: '100vw', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <p style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-head)' }}>
-        portafolio cargando...
-      </p>
-    </div>
+    <motion.div
+      style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4 }}
+    >
+      <DeskScene />
+    </motion.div>
   )
 }
