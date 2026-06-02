@@ -67,3 +67,98 @@
     inset 8px 0 20px rgba(100, 55, 10, 0.08),
     inset -8px 0 20px rgba(100, 55, 10, 0.08);
 }
+
+/* ── Items sobre la mesa ───────────────────────────────────── */
+
+.deskitem {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  z-index: 10;
+  cursor: default;
+}
+
+.deskitem--clickable {
+  cursor: pointer;
+}
+
+.deskitem__group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.deskitem__figure {
+  width: var(--item-size, 90px);
+  height: auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  transform: rotate(var(--item-rotate, 0deg));
+}
+
+.deskitem__figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+.deskitem__emoji {
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.deskitem__label {
+  font-family: 'Caveat', cursive;
+  font-size: 17px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.92);
+  color: #3D2B1F;
+  padding: 4px 14px;
+  border-radius: 20px;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  margin-top: -4px;
+}
+
+.deskitem__label--count {
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+/* ── GIF overlay ───────────────────────────────────────────── */
+
+.gif-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  cursor: pointer;
+}
+
+.gif-overlay__img {
+  max-width: min(80vw, 560px);
+  max-height: 70vh;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  display: block;
+}
+
+.gif-overlay__hint {
+  font-family: 'Caveat', cursive;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.45);
+  margin-top: 20px;
+}
