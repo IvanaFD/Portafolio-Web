@@ -11,6 +11,15 @@ Me gusta que el código sea limpio y que los proyectos se sientan terminados, no
   
 }
 
+// Stickers decorativos sobre la portada.
+// Imágenes en /public/stickers/ — x,y = posición en % dentro de la tapa
+// "nombre.png" se usa como fondo de la etiqueta del nombre (aparte)
+export const COVER_STICKERS = [
+  { id: 'sticker1', emoji: '⚫', image: '/stickers/sticker1.png', x: 70, y: 15, rotate: 10,  size: '15rem' },
+  { id: 'sticker2', emoji: '⚫', image: '/stickers/sticker2.png', x: 15, y: 75, rotate: -30, size: '15rem'   },
+  { id: 'sticker3', emoji: '⚫', image: '/stickers/sticker3.jpg', x: 78, y: 83, rotate: 8,   size: '10rem' },
+]
+
 // Items sobre la mesa.
 
 export const DESK_ITEMS = [

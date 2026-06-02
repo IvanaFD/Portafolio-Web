@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { DESK_ITEMS } from '../content'
+import NotebookClosed from './NotebookClosed'
 import '../styles/DeskScene.css'
 
 const EASTER_MAX = 10
@@ -155,6 +156,7 @@ export default function DeskScene({ onOpen }) {
             onEasterClick={handleEasterClick}
           />
         ))}
+        <NotebookClosed onOpen={onOpen} />
       </motion.div>
 
       <AnimatePresence>

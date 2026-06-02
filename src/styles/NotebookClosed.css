@@ -1,0 +1,151 @@
+.nc-wrapper {
+  position: absolute;
+  left: 48%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ── Libro ── */
+.nc-book {
+  display: flex;
+  align-items: stretch;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  background: transparent;
+  position: relative;
+  filter: drop-shadow(4px 10px 28px rgba(0, 0, 0, 0.45));
+}
+
+/* Bordes de páginas visibles detrás de la tapa */
+.nc-pages {
+  position: absolute;
+  left: 30px;
+  right: -5px;
+  top: 4px;
+  bottom: -4px;
+  background: linear-gradient(to right, #EDE0C4 0%, #F5EDDA 60%, #EDE0C4 100%);
+  border-radius: 2px 24px 24px 2px;
+  box-shadow: 2px 0 0 #DDD0B0, 4px 0 0 #D4C8A4;
+  z-index: 0;
+}
+
+/* Lomo */
+.nc-spine {
+  width: 30px;
+  background: linear-gradient(180deg, #624725 0%, #836a25 50%, #71685b 100%);
+  border-radius: 8px 0 0 8px;
+  box-shadow: inset -2px 0 5px rgba(0, 0, 0, 0.35);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Tapa */
+.nc-cover {
+  width: 30rem;
+  height: 40rem;
+  border-radius: 0 24px 24px 0;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 14px,
+      rgba(0, 0, 0, 0.04) 14px,
+      rgba(0, 0, 0, 0.04) 15px
+    ),
+    linear-gradient(180deg, #624725 0%, #836a25 50%, #71685b 100%);
+}
+
+/* Franja de color en la parte superior — podés ocultarla si no la querés */
+.nc-cover__stripe {
+  display: none;
+}
+
+.nc-cover__body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+}
+
+/* ── Etiqueta nombre (usa nombre.png como fondo) ── */
+.nc-label {
+  background-image: url('/stickers/nombre.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 52px 80px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  transform: translateY(-2rem);
+}
+
+.nc-label__name {
+  font-family: 'Caveat', cursive;
+  font-size: 38px;
+  font-weight: 700;
+  color: #1f1503;
+  display: block;
+  line-height: 1.2;
+}
+
+.nc-label__sub {
+  font-family: 'Caveat', cursive;
+  font-size: 18px;
+  color: #362609;
+  letter-spacing: 4px;
+  display: block;
+  margin-top: 4px;
+}
+
+/* ── Stickers decorativos ── */
+.nc-sticker {
+  position: absolute;
+  left: var(--sticker-x, 50%);
+  top: var(--sticker-y, 50%);
+  width: var(--sticker-size, 3rem);
+  height: var(--sticker-size, 3rem);
+  transform: translate(-50%, -50%) rotate(var(--sticker-rotate, 0deg));
+  z-index: 3;
+  pointer-events: none;
+}
+
+.nc-sticker img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(1px 2px 5px rgba(0, 0, 0, 0.25));
+}
+
+.nc-sticker span {
+  font-size: var(--sticker-size, 3rem);
+  display: block;
+  filter: drop-shadow(1px 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* ── Hint pulsante ── */
+.nc-hint {
+  font-family: 'Caveat', cursive;
+  font-size: 16px;
+  color: rgba(50, 30, 10, 0.45);
+  pointer-events: none;
+  letter-spacing: 0.5px;
+}
