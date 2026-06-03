@@ -95,6 +95,41 @@ function DeskItem({ item, onGalleryOpen, onEasterClick, easterCount }) {
   )
 }
 
+function GalleryOverlay({ photos, onClose }) {
+  return (
+    <motion.div
+      className="gif-overlay"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={onClose}
+    >
+      <div className="gallery-polaroids" onClick={e => e.stopPropagation()}>
+        {photos.map((photo, i) => (
+          <motion.div
+            key={photo.src}
+            className="polaroid"
+            initial={{ opacity: 0, y: 80, rotate: i === 0 ? -18 : 18 }}
+            animate={{ opacity: 1, y: 0, rotate: i === 0 ? -6 : 5 }}
+            transition={{ delay: i * 0.12, type: 'spring', stiffness: 200, damping: 18 }}
+          >
+            <img src={photo.src} alt={photo.caption} />
+            {photo.caption && <p className="polaroid__caption">{photo.caption}</p>}
+          </motion.div>
+        ))}
+      </div>
+      <motion.p
+        className="gif-overlay__hint"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.4 }}
+      >
+        click para cerrar
+      </motion.p>
+    </motion.div>
+  )
+}
+
 function GifOverlay({ gif, onClose }) {
   return (
     <motion.div
@@ -127,6 +162,7 @@ function GifOverlay({ gif, onClose }) {
 export default function DeskScene({ onOpen }) {
   const [easterCount, setEasterCount] = useState(0)
   const [showGif, setShowGif] = useState(false)
+  const [galleryPhotos, setGalleryPhotos] = useState(null)
 
   const easterItem = DESK_ITEMS.find(i => i.type === 'easter')
 
@@ -154,12 +190,16 @@ export default function DeskScene({ onOpen }) {
             item={item}
             easterCount={easterCount}
             onEasterClick={handleEasterClick}
+            onGalleryOpen={() => item.photos && setGalleryPhotos(item.photos)}
           />
         ))}
         <NotebookClosed onOpen={onOpen} />
       </motion.div>
 
       <AnimatePresence>
+        {galleryPhotos && (
+          <GalleryOverlay photos={galleryPhotos} onClose={() => setGalleryPhotos(null)} />
+        )}
         {showGif && easterItem && (
           <GifOverlay gif={easterItem.easterGif} onClose={() => setShowGif(false)} />
         )}
