@@ -1,13 +1,19 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import * as LucideIcons from 'lucide-react'
 import '../styles/Notebook.css'
-import { ABOUT, STACK } from '../content'
+import { ABOUT, STACK, PROJECTS, CONTACT } from '../content'
+
+const Icon = ({ name, ...props }) => {
+  const Comp = LucideIcons[name]
+  return Comp ? <Comp {...props} /> : null
+}
 
 const PAGES = [
-  { id: 'about',    label: 'Sobre mí',  color: '#F87171', chapter: 'I',   leftBg: '#FFECEC' },
-  { id: 'stack',    label: 'Stack',     color: '#FB923C', chapter: 'II',  leftBg: '#FFF0E4' },
-  { id: 'projects', label: 'Proyectos', color: '#4ADE80', chapter: 'III', leftBg: '#E8FFF0' },
-  { id: 'contact',  label: 'Contacto',  color: '#FACC15', chapter: 'IV',  leftBg: '#FFFBE8' },
+  { id: 'about',    label: { es: 'Sobre mí',  en: 'About me'  }, color: '#F87171', chapter: 'I',   leftBg: '#FFECEC' },
+  { id: 'stack',    label: { es: 'Stack',      en: 'Stack'     }, color: '#FB923C', chapter: 'II',  leftBg: '#FFF0E4' },
+  { id: 'projects', label: { es: 'Proyectos',  en: 'Projects'  }, color: '#4ADE80', chapter: 'III', leftBg: '#E8FFF0' },
+  { id: 'contact',  label: { es: 'Contacto',   en: 'Contact'   }, color: '#FACC15', chapter: 'IV',  leftBg: '#FFFBE8' },
 ]
 
 const pageVariants = {
@@ -31,6 +37,7 @@ const pageVariants = {
 export default function Notebook({ onClose }) {
   const [currentPage, setCurrentPage] = useState(0)
   const [direction, setDirection] = useState(1)
+  const [lang, setLang] = useState('es')
 
   const goTo = (index) => {
     if (index === currentPage) return
@@ -50,7 +57,18 @@ export default function Notebook({ onClose }) {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
       >
-        ← escritorio
+        ← {lang === 'es' ? 'escritorio' : 'desk'}
+      </motion.button>
+
+      <motion.button
+        className="nb-lang"
+        onClick={() => setLang(l => l === 'es' ? 'en' : 'es')}
+        whileHover={{ scale: 1.05 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+      >
+        {lang === 'es' ? 'EN' : 'ES'}
       </motion.button>
 
       <motion.div
@@ -72,7 +90,7 @@ export default function Notebook({ onClose }) {
           >
             <div className="nb-left-art">
               <span className="nb-left-art__chapter">cap. {page.chapter}</span>
-              <span className="nb-left-art__title">{page.label}</span>
+              <span className="nb-left-art__title">{page.label[lang]}</span>
               <span className="nb-left-art__deco" style={{ color: page.color }}>
                 ✦ ✦ ✦
               </span>
@@ -98,7 +116,7 @@ export default function Notebook({ onClose }) {
               whileHover={{ y: -2 }}
               title={p.label}
             >
-              <span>{p.label}</span>
+              <span>{p.label[lang]}</span>
             </motion.button>
           ))}
         </div>
@@ -128,17 +146,17 @@ export default function Notebook({ onClose }) {
                         <img src="/me.png" alt="Ivana" />
                       </div>
                       <div className="nb-about__text">
-                        <h2 className="nb-about__name">Hola, soy Ivana</h2>
-                        <p className="nb-about__bio">{ABOUT.bio1}</p>
+                        <h2 className="nb-about__name">{ABOUT[lang].greeting}</h2>
+                        <p className="nb-about__bio">{ABOUT[lang].bio1}</p>
                       </div>
                     </div>
 
-                    <p className="nb-about__bio">{ABOUT.bio2}</p>
+                    <p className="nb-about__bio">{ABOUT[lang].bio2}</p>
 
                     <div className="nb-about__meta">
-                      <span>📍 {ABOUT.location}</span>
+                      <span>📍 {ABOUT[lang].location}</span>
                       <span>·</span>
-                      <span>{ABOUT.availability}</span>
+                      <span>{ABOUT[lang].availability}</span>
                     </div>
 
                     <div className="nb-skills">
@@ -163,7 +181,7 @@ export default function Notebook({ onClose }) {
                         <h3
                           className="nb-stack__title"
                           style={{ '--hl': cat.highlight }}
-                        >{cat.title}</h3>
+                        >{cat.title[lang]}</h3>
                         <div className="nb-stack__grid">
                           {cat.items.map((item) => (
                             <div
@@ -179,9 +197,71 @@ export default function Notebook({ onClose }) {
                       </div>
                     ))}
                   </div>
+                ) : page.id === 'projects' ? (
+                  <div className="nb-projects">
+                    {PROJECTS.map((p) => (
+                      <div
+                        key={p.id}
+                        className="nb-project-card"
+                        style={{ '--card-color': p.type === 'frontend' ? '#FACC15' : '#A78BFA' }}
+                      >
+                        <div className="nb-project-card__header">
+                          <Icon name={p.icon} size={18} className="nb-project-card__icon" />
+                          <h3 className="nb-project-card__name">{p.name}</h3>
+                          <span className="nb-project-card__type">
+                            {p.type === 'frontend' ? 'Frontend' : 'Full Stack'}
+                          </span>
+
+                        </div>
+                        <p className="nb-project-card__desc">{p.desc[lang]}</p>
+                        <div className="nb-project-card__stack">
+                          {p.stack.map((s) => (
+                            <span key={s} className="nb-project-card__chip">{s}</span>
+                          ))}
+                        </div>
+                        <div className="nb-project-card__links">
+                          {p.links.map((l) => (
+                            <a key={l.label} href={l.url} target="_blank" rel="noreferrer" className="nb-project-card__link">
+                              ↗ {l.label}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : page.id === 'contact' ? (
+                  <div className="nb-contact">
+                    <div className="nb-contact__header">
+                      <h2 className="nb-contact__title">{CONTACT.title[lang]}</h2>
+                      <p className="nb-contact__tagline">{CONTACT.tagline[lang]}</p>
+                    </div>
+                    <div className="nb-contact__grid">
+                      {CONTACT.links.map((l) => {
+                        const Tag = l.disabled ? 'div' : 'a'
+                        return (
+                          <Tag
+                            key={l.id}
+                            {...(!l.disabled && {
+                              href: l.href,
+                              target: l.id === 'gmail' ? undefined : '_blank',
+                              rel: 'noreferrer',
+                            })}
+                            className={`nb-contact__btn${l.disabled ? ' nb-contact__btn--disabled' : ''}`}
+                            style={{ '--ct-color': l.color }}
+                          >
+                            {l.brandSrc
+                              ? <img src={l.brandSrc} alt={l.label} className="nb-contact__btn-icon" />
+                              : <Icon name={l.lucideIcon} size={22} className="nb-contact__btn-icon" />
+                            }
+                            <span>{typeof l.label === 'object' ? l.label[lang] : l.label}</span>
+                          </Tag>
+                        )
+                      })}
+                    </div>
+                  </div>
                 ) : (
                   <p className="nb-placeholder">
-                    [ {page.label} — contenido próximamente ]
+                    [ {page.label[lang]} — {lang === 'es' ? 'contenido próximamente' : 'coming soon'} ]
                   </p>
                 )}
               </motion.div>
@@ -189,6 +269,22 @@ export default function Notebook({ onClose }) {
           </div>
         </div>
       </motion.div>
+
+      <footer className="nb-footer">
+        <span>Ivana Figueroa</span>
+        <span>·</span>
+        <span>Guatemala</span>
+        <span>·</span>
+        <span>{new Date().getFullYear()}</span>
+        <a
+          href="https://github.com/IvanaFD/Portafolio-Web"
+          target="_blank"
+          rel="noreferrer"
+          className="nb-footer__link"
+        >
+          <img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" width={16} height={16} />
+        </a>
+      </footer>
     </div>
   )
 }

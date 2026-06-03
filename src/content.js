@@ -14,7 +14,7 @@ const CL = 'https://res.cloudinary.com/dajf4aqhf/image/upload'
 
 export const STACK = [
   {
-    title: 'Lenguajes',
+    title: { es: 'Lenguajes', en: 'Languages' },
     highlight: 'rgba(253, 224, 71, 0.45)',
     items: [
       { name: 'JavaScript', icon: `${CL}/v1780449293/javas_y5wxqo.png`,  rotate:  1.5 },
@@ -26,7 +26,7 @@ export const STACK = [
     ],
   },
   {
-    title: 'Frameworks & Librerías',
+    title: { es: 'Frameworks & Librerías', en: 'Frameworks & Libraries' },
     highlight: 'rgba(134, 239, 172, 0.45)',
     items: [
       { name: 'Node.js', icon: `${CL}/v1780449290/node_zlfrgp.png`,   rotate: -1.0 },
@@ -35,7 +35,7 @@ export const STACK = [
     ],
   },
   {
-    title: 'Utilidades',
+    title: { es: 'Utilidades', en: 'Utilities' },
     highlight: 'rgba(196, 181, 253, 0.45)',
     items: [
       { name: 'PostgreSQL', icon: 'https://res.cloudinary.com/dajf4aqhf/image/upload/v1780449287/postgresql_xkaznc.png', rotate:  1.0 },
@@ -47,17 +47,93 @@ export const STACK = [
   },
 ]
 
+export const PROJECTS = [
+  {
+    id: 'calc',
+    name: 'Calculadora',
+    icon: 'Calculator',
+    type: 'frontend',
+    desc: { es: 'Calculadora web con historial de operaciones.', en: 'Web calculator with operation history.' },
+    stack: ['TypeScript', 'React'],
+    links: [{ label: 'GitHub', url: 'https://github.com/IvanaFD/Lab7-Calculadora-Web' }],
+  },
+  {
+    id: 'electrostore',
+    name: 'Electrostore',
+    icon: 'Zap',
+    type: 'fullstack',
+    desc: { es: 'Tienda de componentes electrónicos con vista ecommerce y panel admin.', en: 'Electronics store with ecommerce view and admin panel.' },
+    stack: ['JavaScript', 'Node', 'Express', 'React', 'Docker'],
+    links: [{ label: 'GitHub', url: 'https://github.com/IvanaFD/Electrostore-/tree/proyecto-web-2' }],
+  },
+  {
+    id: 'snake',
+    name: 'Snake Game',
+    icon: 'Gamepad2',
+    type: 'frontend',
+    desc: { es: 'Juego de Snake clásico corriendo en el navegador.', en: 'Classic Snake game running in the browser.' },
+    stack: ['JavaScript', 'React'],
+    links: [{ label: 'GitHub', url: 'https://github.com/IvanaFD/Lab6-Snake-Web' }],
+  },
+  {
+    id: 'adopt',
+    name: 'Adopt Tracker',
+    icon: 'PawPrint',
+    type: 'fullstack',
+    desc: { es: 'Sistema de seguimiento de adopciones.', en: 'Full stack adoption tracking system.' },
+    stack: ['JavaScript', 'Node', 'Express', 'HTML', 'CSS'],
+    links: [
+      { label: 'backend',  url: 'https://github.com/IvanaFD/adopt-tracker-api' },
+      { label: 'frontend', url: 'https://github.com/IvanaFD/adopt-tracker-cliente' },
+    ],
+  },
+  {
+    id: 'catexplorer',
+    name: 'Cat Explorer',
+    icon: 'Cat',
+    type: 'fullstack',
+    desc: { es: 'Explorador de razas de gatos con The Cat API.', en: 'Cat breed explorer powered by The Cat API.' },
+    stack: ['Node.js', 'Docker', 'Cat API'],
+    links: [{ label: 'GitHub', url: 'https://github.com/IvanaFD/Ejercicio4-React' }],
+  },
+]
+
 export const ABOUT = {
-  bio1: `Estudiante de tercer año en Ciencias de la Computación en la Universidad del Valle de Guatemala. Me gusta aprender de la tecnología todos los días — es un proceso que nunca acaba.`,
-  bio2: `Me gusta crear soluciones completas y brindar la mejor experiencia al usuario. Hacer cosas creativas y salir de mi zona de confort aprendiendo cosas nuevas. Busco aprender más sobre redes y estar al día con las tecnologías.`,
-  location: 'Guatemala',
-  availability: 'Disponible para Full Stack',
+  es: {
+    greeting: 'Hola, soy Ivana ✦',
+    bio1: `Estudiante de tercer año en Ciencias de la Computación en la Universidad del Valle de Guatemala. Me gusta aprender de la tecnología todos los días — es un proceso que nunca acaba.`,
+    bio2: `Me gusta crear soluciones completas y brindar la mejor experiencia al usuario. Hacer cosas creativas y salir de mi zona de confort aprendiendo cosas nuevas. Busco aprender más sobre redes y estar al día con las tecnologías.`,
+    location: 'Guatemala',
+    availability: 'Disponible para Full Stack',
+  },
+  en: {
+    greeting: "Hi, I'm Ivana ✦",
+    bio1: `Third-year Computer Science student at Universidad del Valle de Guatemala. I enjoy learning about technology every day — it's a process that never ends.`,
+    bio2: `I like building complete solutions and delivering the best user experience. I enjoy creative work and stepping out of my comfort zone by learning new things. Looking to expand my knowledge in networking and stay current with today's technologies.`,
+    location: 'Guatemala',
+    availability: 'Available for Full Stack',
+  },
   skills: [
     { name: 'JavaScript', color: '#FDE68A', rotate:  1.5 },
     { name: 'Node.js',    color: '#A7F3D0', rotate: -1.2 },
     { name: 'Docker',     color: '#BFDBFE', rotate:  2.0 },
     { name: 'C++',        color: '#DDD6FE', rotate: -0.8 },
     { name: 'PostgreSQL', color: '#FECACA', rotate:  1.2 },
+  ],
+}
+
+const SI = 'https://cdn.simpleicons.org'
+
+export const CONTACT = {
+  title:   { es: '¿Hablamos? ✦',  en: "Let's talk ✦" },
+  tagline: {
+    es: 'Para saber más de mi trabajo,\ncrear algo juntos o una oportunidad laboral.',
+    en: 'To learn more about my work,\nbuild something together or for a job opportunity.',
+  },
+  links: [
+    { id: 'github',   label: 'GitHub',   brandSrc: `${SI}/github/24292E`,   href: 'https://github.com/IvanaFD',                                              color: '#24292E' },
+    { id: 'linkedin', label: 'LinkedIn', brandSrc: `${SI}/linkedin/0A66C2`, href: 'https://www.linkedin.com/in/ivana-cristina-figueroa-diemek-016a45413',    color: '#0A66C2' },
+    { id: 'gmail',    label: 'Gmail',    brandSrc: `${SI}/gmail/EA4335`,    href: 'mailto:ivanac.figueroad@gmail.com',                                        color: '#EA4335' },
   ],
 }
 
@@ -79,6 +155,10 @@ export const DESK_ITEMS = [
     emoji: '📸',
     drawing: '/drawings/camera.png',
     x: 75, y: 50, size: '25rem', rotate: 20,
+    photos: [
+      { src: 'https://res.cloudinary.com/dajf4aqhf/image/upload/v1778016127/lola_kniv2t.jpg',  caption: 'Lola' },
+      { src: 'https://res.cloudinary.com/dajf4aqhf/image/upload/v1778016126/lila_a4wbrn.jpg',  caption: 'Lila' },
+    ],
   },
   {
     id: 'calculator',
